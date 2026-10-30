@@ -1,0 +1,5 @@
+from pydantic import BaseModel
+
+class Subject(BaseModel):
+    subject_name: str
+    session_numbers: int

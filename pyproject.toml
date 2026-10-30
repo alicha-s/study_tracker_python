@@ -1,0 +1,11 @@
+[project]
+name = "study_tracker"
+version = "0.1.0"
+dependencies = [
+    "pydantic",
+    "customtkinter",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
