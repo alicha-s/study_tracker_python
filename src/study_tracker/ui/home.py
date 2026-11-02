@@ -1,79 +1,7 @@
 import customtkinter as ctk
-
-class NewRow(ctk.CTkFrame):
-    def __init__(self,master):
-        super().__init__(master)
-        self.configure(fg_color="transparent")
-        self.font_color = "#1D2E0F"
-        self.font_config =("Nunito", 16)
-
-        self.checkbox = ctk.CTkCheckBox(self,
-                                        corner_radius=0,
-                                        border_color="#6A8257",
-                                        border_width=1.5,
-                                        bg_color="transparent",
-                                        fg_color="#D4E4D4",
-                                        hover_color="#9A9B9A",
-                                        checkmark_color="#252E1E",
-                                        text=None,
-                                        width=50)
-        self.checkbox.grid(row=0, column=0, padx=(5,0))
-
-        column_widths = [490,375,90,90,90]
-
-        for col,cw in enumerate(column_widths):
-            self.subject_entry = ctk.CTkEntry(self,
-                                            corner_radius=0,
-                                            border_width=1,
-                                            border_color="#A0BB8C",
-                                            width=cw,
-                                            fg_color="transparent")
-            self.subject_entry.grid(row=0, column=col+1)
-
-
-class HomeButtons(ctk.CTkFrame):
-    def __init__(self,master,button_name,button_func):
-        super().__init__(master)
-        self.button_name = button_name
-        self.button_func = button_func
-        self.configure(fg_color="transparent")
-        self.font_color = "#1D2E0F"
-        self.font_config =("Nunito", 16)
-
-        self.button = ctk.CTkButton(self,
-                                    text=self.button_name,
-                                    text_color=self.font_color,
-                                    font=self.font_config,
-                                    fg_color="#D7E4C6",
-                                    corner_radius=3,
-                                    border_color="#A0B18A",
-                                    border_width=1,
-                                    hover_color="#819770",
-                                    command=self.button_func)
-        self.button.grid(row=1,column=0,padx=0,pady=0)
-
-        
-class TableHeader(ctk.CTkFrame):
-    def __init__(self,master,header_name,label_width):
-        super().__init__(master)
-        self.header_name = header_name
-        self.label_width = label_width
-        self.configure(fg_color="transparent")
-        self.font_color = "#1B3D00"
-        self.font_config =("Nunito", 16, "bold")
-
-        self.label = ctk.CTkLabel(self, 
-                                  text=self.header_name,
-                                  font=self.font_config,
-                                  text_color=self.font_color,
-                                  width=label_width,
-                                  corner_radius=0,
-                                  fg_color="#D7E4C6",
-                                  border_color="#5F7148",
-                                  border_width = 1.5,
-                                  height=35)
-        self.label.grid(row=0, column=0,padx=0,pady=25)
-
+from ui.buttons import HomeButtons
+from ui.headers import TableHeader
+from ui.rows import NewRow
 
 class Main_ScrollableFrame(ctk.CTkScrollableFrame):
     def __init__(self,master):
@@ -124,10 +52,7 @@ class App(ctk.CTk):
                                            label_width=90)
         self.progress_header.grid(row=0,column=5, padx=(0,10),pady=self.header_pady)
 
-
-
-
-
+        """buttons process"""
         self.add_button = HomeButtons(master=self.scrollframe,
                                            button_name="add subject",
                                            button_func=self.add_row)
